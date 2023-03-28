@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="dataPickerTheme" parent="android:Theme.Material.Light.DarkActionBar">
+        <item name="android:colorSecondary">#10332d</item>
+    </style>
 </resources>
