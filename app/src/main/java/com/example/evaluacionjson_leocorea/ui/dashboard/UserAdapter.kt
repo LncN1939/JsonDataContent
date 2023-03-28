@@ -4,8 +4,10 @@ package com.example.evaluacionjson_leocorea.ui.dashboard
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.evaluacionjson_leocorea.databinding.UserItemBinding
 
@@ -21,8 +23,8 @@ class UserAdapter (private val userList: ArrayList<User>): RecyclerView.Adapter<
             binding.emailtv.text = item.email
             binding.facultadtv.text = item.faculty
         }
-    }
 
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val userItem = UserItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(userItem)
