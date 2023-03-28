@@ -27,6 +27,7 @@ import com.example.evaluacionjson_leocorea.databinding.FragmentEditBinding
 import com.example.evaluacionjson_leocorea.databinding.FragmentNotificationsBinding
 import com.example.evaluacionjson_leocorea.ui.dashboard.User
 import com.example.evaluacionjson_leocorea.ui.dashboard.UserAdapter
+import com.example.evaluacionjson_leocorea.ui.notifications.DatePickerFragment
 
 class EditFragment : Fragment() {
     private var _binding: FragmentEditBinding? = null
@@ -113,9 +114,21 @@ class EditFragment : Fragment() {
                 }
             }
             reqQueue.add(resultadoPost)
-
         }
 
+        binding.txtFechaNac.setOnClickListener {
+            showDatePicker()
+        }
+
+    }
+
+    private fun showDatePicker() {
+        val datePicker = DatePickerFragmentEdit {day, month, year -> onDateSelected(day, month, year)}
+        datePicker.show(parentFragmentManager,"datePicker")
+    }
+
+    fun onDateSelected(day:Int, month:Int, year:Int){
+        binding.txtFechaNac.setText("${year.toString()}-${month.toString()}-${day.toString()}")
     }
 
     override fun onDestroyView() {
