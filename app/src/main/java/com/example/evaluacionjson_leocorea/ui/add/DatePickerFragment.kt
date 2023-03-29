@@ -1,4 +1,4 @@
-package com.example.evaluacionjson_leocorea.ui.notifications
+package com.example.evaluacionjson_leocorea.ui.add
 
 import android.app.DatePickerDialog
 import android.app.Dialog
@@ -6,7 +6,6 @@ import android.content.Context
 import android.os.Bundle
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
-import com.example.evaluacionjson_leocorea.R
 import java.util.Calendar
 
 class DatePickerFragment(val listener : (day:Int, month:Int, year:Int) -> Unit): DialogFragment(),

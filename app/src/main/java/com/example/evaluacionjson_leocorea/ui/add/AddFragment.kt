@@ -1,4 +1,4 @@
-package com.example.evaluacionjson_leocorea.ui.notifications
+package com.example.evaluacionjson_leocorea.ui.add
 
 import android.os.Bundle
 import android.util.Log

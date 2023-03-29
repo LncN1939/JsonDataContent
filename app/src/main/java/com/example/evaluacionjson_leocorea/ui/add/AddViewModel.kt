@@ -1,4 +1,4 @@
-package com.example.evaluacionjson_leocorea.ui.notifications
+package com.example.evaluacionjson_leocorea.ui.add
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
