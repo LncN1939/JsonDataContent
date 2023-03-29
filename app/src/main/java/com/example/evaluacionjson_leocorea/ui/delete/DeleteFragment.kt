@@ -68,8 +68,7 @@ class DeleteFragment: Fragment() {
                 txtEmail?.setText(res.getString("email"))
                 txtFacultad?.setText(res.getString("facultad"))
             }, { err ->
-                Toast.makeText(getActivity(), "Error ${err.toString()}", Toast.LENGTH_LONG)
-                    .show()
+                resetText()
             })
             reqQueue1.add(request)
         }
@@ -122,37 +121,29 @@ class DeleteFragment: Fragment() {
                         dialogInterface.cancel()
                     }.show()
 
-            } else if(c2.isBlank() && c3.isBlank() && c4.isBlank() && c5.isBlank() && c6.isBlank() && c7.isBlank()){
+            }
+            else if(c2.isBlank() && c3.isBlank() && c4.isBlank() && c5.isBlank() && c6.isBlank() && c7.isBlank()){
                 isValid = false
                 builder.setTitle("No existe el registro")
                     .setPositiveButton("Ok"){dialogInterface, it ->
                         dialogInterface.cancel()
                     }.show()
             } else {
-                Toast.makeText(getActivity(), "I have no idea what is this message doing here", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Wah", Toast.LENGTH_SHORT).show()
             }
         }
         return isValid
     }
 
     private fun resetText(){
-        txtIdc?.setText("")
         txtNombres?.setText("")
         txtApellidos?.setText("")
         txtFechaNac?.setText("")
         txtTitulo?.setText("")
         txtEmail?.setText("")
         txtFacultad?.setText("")
-        tvsearch?.setText("")
     }
 
-    private fun comprobation(){
-        val c1 : String = txtIdc?.text.toString()
-
-        if(c1.isBlank()){
-            resetText()
-        }
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

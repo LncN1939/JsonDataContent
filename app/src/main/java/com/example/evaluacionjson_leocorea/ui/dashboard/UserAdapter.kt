@@ -31,7 +31,7 @@ class UserAdapter (private val userList: ArrayList<User>): RecyclerView.Adapter<
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.load(this.userList[position])
+      holder.load(this.userList[position])
     }
 
     override fun getItemCount(): Int {
