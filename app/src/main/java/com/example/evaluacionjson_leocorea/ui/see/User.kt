@@ -1,4 +1,4 @@
-package com.example.evaluacionjson_leocorea.ui.dashboard
+package com.example.evaluacionjson_leocorea.ui.see
 
 data class User(var id: String,
                 var name: String,
