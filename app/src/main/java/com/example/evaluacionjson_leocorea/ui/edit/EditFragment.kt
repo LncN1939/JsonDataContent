@@ -24,7 +24,6 @@ import com.android.volley.toolbox.Volley
 import com.example.evaluacionjson_leocorea.R
 import com.example.evaluacionjson_leocorea.databinding.FragmentDashboardBinding
 import com.example.evaluacionjson_leocorea.databinding.FragmentEditBinding
-import com.example.evaluacionjson_leocorea.databinding.FragmentNotificationsBinding
 import com.example.evaluacionjson_leocorea.ui.dashboard.User
 import com.example.evaluacionjson_leocorea.ui.dashboard.UserAdapter
 import com.example.evaluacionjson_leocorea.ui.notifications.DatePickerFragment
