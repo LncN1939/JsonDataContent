@@ -5,33 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <TextView
         android:id="@+id/idCtv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="28dp"
         android:text="ID"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
 
     <TextView
         android:id="@+id/nombrestv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
         android:text="Nombre"
-        app:layout_constraintStart_toStartOf="@+id/idCtv"
-        app:layout_constraintTop_toBottomOf="@+id/idCtv" />
-
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/idCtv"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/facultadtv"/>
 
     <TextView
         android:id="@+id/apellidostv"
@@ -39,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="Apellido"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/nombrestv"
         app:layout_constraintTop_toBottomOf="@+id/nombrestv" />
 
@@ -48,6 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="Fecha de nacimoento"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/apellidostv"
         app:layout_constraintTop_toBottomOf="@+id/apellidostv" />
 
@@ -57,6 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="Titulo"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/fechaNactv"
         app:layout_constraintTop_toBottomOf="@+id/fechaNactv" />
 
@@ -66,6 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="Email"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/titulotv"
         app:layout_constraintTop_toBottomOf="@+id/titulotv" />
 
@@ -75,6 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="Facultad"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/emailtv"
         app:layout_constraintTop_toBottomOf="@+id/emailtv" />
 
@@ -83,6 +85,16 @@
         android:layout_width="match_parent"
         android:layout_height="4dp"
         android:background="#efefef"
+        android:layout_marginTop="28dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/facultadtv" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="#efefef"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
