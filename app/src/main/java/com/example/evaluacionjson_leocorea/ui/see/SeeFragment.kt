@@ -1,4 +1,4 @@
-package com.example.evaluacionjson_leocorea.ui.dashboard
+package com.example.evaluacionjson_leocorea.ui.see
 
 import android.os.Bundle
 import android.util.Log
@@ -48,7 +48,7 @@ class DashboardFragment : Fragment() {
         btn60 = binding.btn60
         btnAll = binding.btnAll
 
-     /*   val reqQueue: RequestQueue = Volley.newRequestQueue(getActivity())
+         val reqQueue: RequestQueue = Volley.newRequestQueue(getActivity())
         val request = JsonObjectRequest(Request.Method.GET,apiLink,null, { res ->
             val jsonArray = res.getJSONArray("data")
             for (i in 0 until jsonArray.length()){
@@ -74,7 +74,7 @@ class DashboardFragment : Fragment() {
             Log.d("Volley fail", err.message.toString())
         })
         reqQueue.add(request)
-*/
+
         btn60!!.setOnClickListener {
             userList.clear()
             filter60()

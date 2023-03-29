@@ -1,4 +1,4 @@
-package com.example.evaluacionjson_leocorea.ui.dashboard
+package com.example.evaluacionjson_leocorea.ui.see
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
