@@ -6,23 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.evaluacionjson_leocorea.R
-import com.example.evaluacionjson_leocorea.databinding.FragmentDashboardBinding
-import com.example.evaluacionjson_leocorea.databinding.FragmentNotificationsBinding
-import com.google.android.material.textfield.TextInputEditText
+import com.example.evaluacionjson_leocorea.databinding.FragmentSeeBinding
 
-class NotificationsFragment : Fragment() {
+class SeeFragment : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
+    private var _binding: FragmentSeeBinding? = null
     private val binding get() = _binding!!
+    private lateinit var builder : AlertDialog.Builder
     var txtNombres: EditText?=null
     var txtApellidos: EditText?=null
     var txtFechaNac: EditText?=null
@@ -36,7 +33,7 @@ class NotificationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentSeeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -48,21 +45,22 @@ class NotificationsFragment : Fragment() {
         txtTitulo = binding.txtTitulo
         txtEmail = binding.txtEmail
         txtFacultad = binding.txtFacultad
+        builder = AlertDialog.Builder(activity!!)
 
         binding.btnSubmit.setOnClickListener() {
             if(validateForm()){
                 val url = "http://192.168.100.15:8080/coordinaccion/add_data.php"
-                val queue = Volley.newRequestQueue(getActivity())
+                val queue = Volley.newRequestQueue(activity)
                 var resultadoPost = object : StringRequest(Request.Method.POST, url,
                     Response.Listener<String> { response ->
                         Toast.makeText(
-                            getActivity(),
+                            activity,
                             "Usuario ha sido insertado existosamente",
                             Toast.LENGTH_LONG
                         ).show()
                     }, Response.ErrorListener { error ->
                         Log.d("ERROR","$error")
-                        Toast.makeText(getActivity(), "Error: $error", Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity, "Error: $error", Toast.LENGTH_LONG).show()
                         Log.d("ERROR","$error")
                     }) {
                     override fun getParams(): MutableMap<String, String> {
@@ -78,8 +76,12 @@ class NotificationsFragment : Fragment() {
                 }
                 queue.add(resultadoPost)
 
-            }
+                builder.setTitle("Registro agregado")
+                    .setPositiveButton("Ok"){dialogInterface, it ->
+                        dialogInterface.cancel()
+                    }.show()
 
+            }
         }
 
         binding.txtFechaNac.setOnClickListener {
@@ -98,31 +100,13 @@ class NotificationsFragment : Fragment() {
         val c6 : String = txtFacultad?.text.toString()
 
         with(binding){
-            if(c1.isBlank()){
+            if(c1.isBlank() || c2.isBlank() || c3.isBlank() || c4.isBlank() || c5.isBlank() || c6.isBlank()){
                 isValid = false
-                txtNombres.error = "El campo requerido"
+                builder.setTitle("No se pueden dejar campos sin llenar")
+                    .setPositiveButton("Ok"){dialogInterface, it ->
+                        dialogInterface.cancel()
+                    }.show()
             }
-            if(c2.isBlank()){
-                isValid = false
-                txtApellidos.error = "El campo es requerido"
-            }
-            if(c3.isEmpty()){
-                isValid = false
-                txtFechaNac.error = "El campo es requerido"
-            }
-            if(c4.isBlank()){
-                isValid = false
-                txtTitulo.error = "El campo es requerido"
-            }
-            if(c5.isBlank()){
-                isValid = false
-                txtEmail.error = "El campo es requerido"
-            }
-            if(c6.isBlank()){
-                isValid = false
-                txtFacultad.error = "El campo es requerido"
-            }
-
         }
         return isValid
     }
