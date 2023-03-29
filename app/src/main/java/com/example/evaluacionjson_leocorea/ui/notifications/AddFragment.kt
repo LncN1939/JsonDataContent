@@ -13,11 +13,11 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.evaluacionjson_leocorea.databinding.FragmentSeeBinding
+import com.example.evaluacionjson_leocorea.databinding.FragmentAddBinding
 
-class SeeFragment : Fragment() {
+class AddFragment : Fragment() {
 
-    private var _binding: FragmentSeeBinding? = null
+    private var _binding: FragmentAddBinding? = null
     private val binding get() = _binding!!
     private lateinit var builder : AlertDialog.Builder
     var txtNombres: EditText?=null
@@ -33,7 +33,7 @@ class SeeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSeeBinding.inflate(inflater, container, false)
+        _binding = FragmentAddBinding.inflate(inflater, container, false)
         return binding.root
     }
 
