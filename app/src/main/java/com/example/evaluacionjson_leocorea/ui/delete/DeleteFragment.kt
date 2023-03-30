@@ -53,53 +53,61 @@ class DeleteFragment: Fragment() {
         tvsearch = binding.txtIdc
         builder = AlertDialog.Builder(activity!!)
 
-
         binding.txtIdc.doAfterTextChanged {
-            Log.d("WARNING", "${txtIdc!!.getText()}")
-            Toast.makeText(getActivity(), txtIdc!!.getText(), Toast.LENGTH_SHORT).show()
-            val reqQueue1: RequestQueue = Volley.newRequestQueue(getActivity())
-            val apiLink = "http://192.168.100.15:8080/coordinaccion/select_data.php?idC=${txtIdc!!.getText()}"
+            selectDataById()
 
-            val request = JsonObjectRequest(Request.Method.GET, apiLink, null, { res ->
-                txtNombres?.setText(res.getString("nombres"))
-                txtApellidos?.setText(res.getString("apellidos"))
-                txtFechaNac?.setText(res.getString("fechaNac"))
-                txtTitulo?.setText(res.getString("titulo"))
-                txtEmail?.setText(res.getString("email"))
-                txtFacultad?.setText(res.getString("facultad"))
-            }, { err ->
-                resetText()
-            })
-            reqQueue1.add(request)
         }
 
         binding.btnId.setOnClickListener(){
-            if (validateForm()) {
-                val url = "http://192.168.100.15:8080/coordinaccion/delete_data.php"
-                val queue = Volley.newRequestQueue(getActivity())
-                var resultadoPost = object : StringRequest(Request.Method.POST, url,
-                    Response.Listener { response ->
-                        Toast.makeText(
-                            getActivity(), "El usuario se ha borrado de manera exitosa",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }, Response.ErrorListener { error ->
-                        Toast.makeText(getActivity(), "Error $error", Toast.LENGTH_LONG).show()
-                    }) {
-                    override fun getParams(): MutableMap<String, String>? {
-                        val parametros = HashMap<String, String>()
-                        parametros.put("idC", tvsearch?.text.toString())
-                        return parametros
-                    }
-                }
-                queue.add(resultadoPost)
-                builder.setTitle("Registro Borrado")
-                    .setPositiveButton("Ok"){dialogInterface, it ->
-                        dialogInterface.cancel()
-                    }.show()
-                resetText()
-            }
+            deleteData()
         }
+    }
+
+    private fun deleteData(){
+        if (validateForm()) {
+            val url = "http://192.168.100.15:8080/coordinaccion/delete_data.php"
+            val queue = Volley.newRequestQueue(getActivity())
+            var resultadoPost = object : StringRequest(Request.Method.POST, url,
+                Response.Listener { response ->
+                    Toast.makeText(
+                        getActivity(), "El usuario se ha borrado de manera exitosa",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }, Response.ErrorListener { error ->
+                    Toast.makeText(getActivity(), "Error $error", Toast.LENGTH_LONG).show()
+                }) {
+                override fun getParams(): MutableMap<String, String>? {
+                    val parametros = HashMap<String, String>()
+                    parametros.put("idC", tvsearch?.text.toString())
+                    return parametros
+                }
+            }
+            queue.add(resultadoPost)
+            builder.setTitle("Registro Borrado")
+                .setPositiveButton("Ok"){dialogInterface, it ->
+                    dialogInterface.cancel()
+                }.show()
+            resetText()
+        }
+    }
+
+    private fun selectDataById(){
+        Log.d("WARNING", "${txtIdc!!.getText()}")
+        Toast.makeText(getActivity(), txtIdc!!.getText(), Toast.LENGTH_SHORT).show()
+        val reqQueue1: RequestQueue = Volley.newRequestQueue(getActivity())
+        val apiLink = "http://192.168.100.15:8080/coordinaccion/select_data.php?idC=${txtIdc!!.getText()}"
+
+        val request = JsonObjectRequest(Request.Method.GET, apiLink, null, { res ->
+            txtNombres?.setText(res.getString("nombres"))
+            txtApellidos?.setText(res.getString("apellidos"))
+            txtFechaNac?.setText(res.getString("fechaNac"))
+            txtTitulo?.setText(res.getString("titulo"))
+            txtEmail?.setText(res.getString("email"))
+            txtFacultad?.setText(res.getString("facultad"))
+        }, { err ->
+            resetText()
+        })
+        reqQueue1.add(request)
     }
 
     private fun validateForm(): Boolean {
@@ -143,7 +151,6 @@ class DeleteFragment: Fragment() {
         txtEmail?.setText("")
         txtFacultad?.setText("")
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

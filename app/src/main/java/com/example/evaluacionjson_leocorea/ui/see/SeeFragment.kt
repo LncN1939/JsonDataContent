@@ -41,32 +41,7 @@ class SeeFragment : Fragment() {
         btn60 = binding.btn60
         btnAll = binding.btnAll
 
-        val reqQueue: RequestQueue = Volley.newRequestQueue(activity)
-        val request = JsonObjectRequest(Request.Method.GET,apiLink,null, { res ->
-            val jsonArray = res.getJSONArray("data")
-            for (i in 0 until jsonArray.length()){
-                var jsonObj = jsonArray.getJSONObject(i)
-                val user = User(
-                    jsonObj.getString("idC"),
-                    jsonObj.getString("nombres"),
-                    jsonObj.getString("apellidos"),
-                    jsonObj.getString("fechaNac"),
-                    jsonObj.getString("titulo"),
-                    jsonObj.getString("email"),
-                    jsonObj.getString("facultad")
-                )
-                userList.add(user)
-            }
-            Log.d("PedroVaAsuCasa", userList.toString())
-            println(userList.toString())
-
-            recycleView?.layoutManager = LinearLayoutManager(activity)
-            recycleView?.adapter = UserAdapter(userList)
-
-        },{err ->
-            Log.d("Volley fail", err.message.toString())
-        })
-        reqQueue.add(request)
+        filterAll()
 
         btn60!!.setOnClickListener {
             userList.clear()

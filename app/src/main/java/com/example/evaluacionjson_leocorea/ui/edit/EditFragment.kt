@@ -63,34 +63,7 @@ class EditFragment : Fragment(), AdapterView.OnItemSelectedListener{
 
         spinnerID = binding.spinner
         binding.spinner.onItemSelectedListener = this
-
-        val reqQueue: RequestQueue = Volley.newRequestQueue(activity)
-        val url = "http://192.168.100.15:8080/coordinaccion/read_data.php"
-        val request = JsonObjectRequest(Request.Method.GET,url,null, { res ->
-                try {
-                    val jsonArray = res.getJSONArray("data")
-                    for (i in 0 until jsonArray.length()) {
-                        val jsonObject = jsonArray.getJSONObject(i)
-                        val IDC = jsonObject.optString("idC")
-                        IdList.add(IDC)
-                        idCAdapter = ArrayAdapter(
-                            activity!!, R.layout.color_spinner_layout,
-                            IdList
-                        )
-                        idCAdapter.setDropDownViewResource(R.layout.spinner_dropdown)
-                        binding.spinner.adapter = idCAdapter
-                        /*
-                        idCAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                        binding.spinner.adapter = idCAdapter*/
-                    }
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                }
-
-            },
-            Response.ErrorListener { err -> }
-            )
-        reqQueue.add(request)
+        fillSpinnet()
 
         binding.txtIdc.doAfterTextChanged {
             Log.d("WARNING","${txtIdc!!.getText()}")
@@ -152,6 +125,36 @@ class EditFragment : Fragment(), AdapterView.OnItemSelectedListener{
             showDatePicker()
         }
 
+    }
+
+    private fun fillSpinnet(){
+        val reqQueue: RequestQueue = Volley.newRequestQueue(activity)
+        val url = "http://192.168.100.15:8080/coordinaccion/read_data.php"
+        val request = JsonObjectRequest(Request.Method.GET,url,null, { res ->
+            try {
+                val jsonArray = res.getJSONArray("data")
+                for (i in 0 until jsonArray.length()) {
+                    val jsonObject = jsonArray.getJSONObject(i)
+                    val IDC = jsonObject.optString("idC")
+                    IdList.add(IDC)
+                    idCAdapter = ArrayAdapter(
+                        activity!!, R.layout.color_spinner_layout,
+                        IdList
+                    )
+                    idCAdapter.setDropDownViewResource(R.layout.spinner_dropdown)
+                    binding.spinner.adapter = idCAdapter
+                    /*
+                    idCAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    binding.spinner.adapter = idCAdapter*/
+                }
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+
+        },
+            Response.ErrorListener { err -> }
+        )
+        reqQueue.add(request)
     }
 
     private fun validateForm(): Boolean {
@@ -233,6 +236,5 @@ class EditFragment : Fragment(), AdapterView.OnItemSelectedListener{
         super.onDestroyView()
         _binding = null
     }
-
 
 }
