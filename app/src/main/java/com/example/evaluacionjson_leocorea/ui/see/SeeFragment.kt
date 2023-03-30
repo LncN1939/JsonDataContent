@@ -41,7 +41,7 @@ class SeeFragment : Fragment() {
         btn60 = binding.btn60
         btnAll = binding.btnAll
 
-         val reqQueue: RequestQueue = Volley.newRequestQueue(getActivity())
+        val reqQueue: RequestQueue = Volley.newRequestQueue(activity)
         val request = JsonObjectRequest(Request.Method.GET,apiLink,null, { res ->
             val jsonArray = res.getJSONArray("data")
             for (i in 0 until jsonArray.length()){
@@ -60,7 +60,7 @@ class SeeFragment : Fragment() {
             Log.d("PedroVaAsuCasa", userList.toString())
             println(userList.toString())
 
-            recycleView?.layoutManager = LinearLayoutManager(getActivity())
+            recycleView?.layoutManager = LinearLayoutManager(activity)
             recycleView?.adapter = UserAdapter(userList)
 
         },{err ->

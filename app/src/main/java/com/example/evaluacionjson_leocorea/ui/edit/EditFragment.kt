@@ -20,6 +20,7 @@ import org.json.JSONException
 import java.util.regex.Pattern
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import com.example.evaluacionjson_leocorea.R
 
 class EditFragment : Fragment(), AdapterView.OnItemSelectedListener{
     private var _binding: FragmentEditBinding? = null
@@ -73,11 +74,14 @@ class EditFragment : Fragment(), AdapterView.OnItemSelectedListener{
                         val IDC = jsonObject.optString("idC")
                         IdList.add(IDC)
                         idCAdapter = ArrayAdapter(
-                            activity!!, android.R.layout.simple_spinner_item,
+                            activity!!, R.layout.color_spinner_layout,
                             IdList
                         )
-                        idCAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                        idCAdapter.setDropDownViewResource(R.layout.spinner_dropdown)
                         binding.spinner.adapter = idCAdapter
+                        /*
+                        idCAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                        binding.spinner.adapter = idCAdapter*/
                     }
                 } catch (e: JSONException) {
                     e.printStackTrace()
