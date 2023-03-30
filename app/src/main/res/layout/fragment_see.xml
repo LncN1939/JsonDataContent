@@ -27,14 +27,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Todo" />
+            android:text="Todo"
+            android:background="@drawable/tv_border"
+            android:textColor="@color/letter"
+            android:gravity="center"
+            android:textColorHint="@color/bottom_nav_unselected_text" />
 
         <Button
             android:id="@+id/btn60"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Mayores de 60" />
+            android:text="Mayores de 60"
+            android:background="@drawable/tv_border"
+            android:textColor="@color/letter"
+            android:gravity="center"
+            android:textColorHint="@color/bottom_nav_unselected_text" />
 
     </LinearLayout>
 
