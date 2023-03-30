@@ -35,7 +35,7 @@
         android:textColor="@color/letter"
         android:gravity="center"
         android:textColorHint="@color/bottom_nav_unselected_text"
-        android:background="@drawable/tv_border"
+        android:background="@drawable/tv_block_border"
         android:enabled="false"
         android:inputType="textPersonName"
         android:minHeight="48dp"

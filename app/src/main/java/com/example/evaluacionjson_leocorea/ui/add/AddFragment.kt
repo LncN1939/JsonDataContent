@@ -48,44 +48,49 @@ class AddFragment : Fragment() {
         builder = AlertDialog.Builder(activity!!)
 
         binding.btnSubmit.setOnClickListener() {
-            if(validateForm()){
-                val url = "http://192.168.100.15:8080/coordinaccion/add_data.php"
-                val queue = Volley.newRequestQueue(activity)
-                var resultadoPost = object : StringRequest(Request.Method.POST, url,
-                    Response.Listener<String> { response ->
-                        Toast.makeText(
-                            activity,
-                            "Usuario ha sido insertado existosamente",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }, Response.ErrorListener { error ->
-                        Log.d("ERROR","$error")
-                        Toast.makeText(activity, "Error: $error", Toast.LENGTH_LONG).show()
-                        Log.d("ERROR","$error")
-                    }) {
-                    override fun getParams(): MutableMap<String, String> {
-                        val parametros = HashMap<String, String>()
-                        parametros.put("nombres", txtNombres?.text.toString())
-                        parametros.put("apellidos", txtApellidos?.text.toString())
-                        parametros.put("fechaNac", txtFechaNac?.text.toString())
-                        parametros.put("titulo", txtTitulo?.text.toString())
-                        parametros.put("email", txtEmail?.text.toString())
-                        parametros.put("facultad", txtFacultad?.text.toString())
-                        return parametros
-                    }
-                }
-                queue.add(resultadoPost)
-
-                builder.setTitle("Registro agregado")
-                    .setPositiveButton("Ok"){dialogInterface, it ->
-                        dialogInterface.cancel()
-                    }.show()
-
-            }
+            addRegister()
         }
 
         binding.txtFechaNac.setOnClickListener {
             showDatePicker()
+        }
+    }
+
+    private fun addRegister(){
+        if(validateForm()){
+            val url = "http://192.168.100.15:8080/coordinaccion/add_data.php"
+            val queue = Volley.newRequestQueue(activity)
+            var resultadoPost = object : StringRequest(Request.Method.POST, url,
+                Response.Listener<String> { response ->
+                    Toast.makeText(
+                        activity,
+                        "Usuario ha sido insertado existosamente",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }, Response.ErrorListener { error ->
+                    Log.d("ERROR","$error")
+                    Toast.makeText(activity, "Error: $error", Toast.LENGTH_LONG).show()
+                    Log.d("ERROR","$error")
+                }) {
+                override fun getParams(): MutableMap<String, String> {
+                    val parametros = HashMap<String, String>()
+                    parametros.put("nombres", txtNombres?.text.toString())
+                    parametros.put("apellidos", txtApellidos?.text.toString())
+                    parametros.put("fechaNac", txtFechaNac?.text.toString())
+                    parametros.put("titulo", txtTitulo?.text.toString())
+                    parametros.put("email", txtEmail?.text.toString())
+                    parametros.put("facultad", txtFacultad?.text.toString())
+                    return parametros
+                }
+            }
+            queue.add(resultadoPost)
+
+            builder.setTitle("Registro agregado")
+                .setPositiveButton("Ok"){dialogInterface, it ->
+                    dialogInterface.cancel()
+                }.show()
+            resetText()
+
         }
     }
 
@@ -118,6 +123,15 @@ class AddFragment : Fragment() {
 
     fun onDateSelected(day:Int, month:Int, year:Int){
         binding.txtFechaNac.setText("${year.toString()}-${month.toString()}-${day.toString()}")
+    }
+
+    private fun resetText(){
+        txtNombres?.setText("")
+        txtApellidos?.setText("")
+        txtFechaNac?.setText("")
+        txtTitulo?.setText("")
+        txtEmail?.setText("")
+        txtFacultad?.setText("")
     }
 
     override fun onDestroyView() {
