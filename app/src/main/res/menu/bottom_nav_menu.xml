@@ -8,20 +8,20 @@
 
     <item
         android:id="@+id/navigation_see"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:icon="@drawable/baseline_remove_red_eye_24"
+        android:title="@string/title_see" />
 
     <item
         android:id="@+id/navigation_add"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_see" />
+        android:icon="@drawable/baseline_person_add_24"
+        android:title="@string/title_add" />
     <item
         android:id="@+id/navigation_edit"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:icon="@drawable/baseline_edit_24"
         android:title="@string/title_edit" />
     <item
         android:id="@+id/navigation_delete"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:icon="@drawable/baseline_delete_24"
         android:title="@string/title_delete" />
 
 </menu>
